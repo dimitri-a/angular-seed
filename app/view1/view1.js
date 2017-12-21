@@ -2,17 +2,16 @@
 
 angular.module('myApp.view1', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
-  });
-}])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.when('/view1', {
+            templateUrl: 'view1/view1.html',
+            controller: 'View1Ctrl'
+        });
+    }])
 
-.controller('View1Ctrl', [ 'helloUsingService',function(helloUsingService) {
+    .controller('View1Ctrl', ['helloUsingService', 'httpBasedService', function (helloUsingService, httpBasedService) {
 
-    //todo remove
-    debugger;
-    console.log(helloUsingService.sayHello());
-
-}]);
+        httpBasedService.getUsers().then(function (data) {
+            console.log(data);
+        })
+    }]);

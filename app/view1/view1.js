@@ -9,6 +9,10 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
+.controller('View1Ctrl', [ 'helloUsingService',function(helloUsingService) {
+
+    //todo remove
+    debugger;
+    console.log(helloUsingService.sayHello());
 
 }]);

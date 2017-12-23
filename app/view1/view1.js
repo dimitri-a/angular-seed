@@ -9,7 +9,7 @@ angular.module('myApp.view1', ['ngRoute'])
         });
     }])
 
-    .controller('View1Ctrl', ['helloUsingService', 'httpBasedService', function (helloUsingService, httpBasedService) {
+    .controller('View1Ctrl', ['httpBasedService', function (httpBasedService) {
         var url ='https://jsonplaceholder.typicode.com/posts';
         httpBasedService.getUsers(url).then(function (data) {
             console.log(data);

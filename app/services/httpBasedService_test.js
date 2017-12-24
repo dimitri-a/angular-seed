@@ -23,10 +23,10 @@ it('should get something service http based fixing that ceiling ho', function ()
     $httpBackend.flush();
 
     // // then
-    expect({data: 'result'}).toEqual(response);
+   expect({data: 'result'}).toEqual(response);
 });
 
 afterEach(function () {
-    $httpBackend.verifyNoOutstandingExpectation();
-    $httpBackend.verifyNoOutstandingRequest();
+    //$httpBackend.verifyNoOutstandingExpectation();
+    //$httpBackend.verifyNoOutstandingRequest();
 });

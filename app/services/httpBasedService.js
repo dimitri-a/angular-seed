@@ -1,19 +1,16 @@
-
 'use strict';
 
 angular.module('myApp.service', [])
 
-.factory('httpBasedService', function($http) {
-    console.log('httpbasedservice here');
-    return {
-        getUsers: function(url) {
-            return $http.get(url)
-                .then(function(result) {
-                    return result.data;
+    .factory('httpBasedService', function ($http) {
+        console.log('httpbasedservice here');
+        return {
+            getUsers: function (url) {
+                return $http.get(url, {timeout: 10000}).then(function (data) {
+                    console.log(data);
+                }, function (err) {
+                    console.log(err);
                 })
-                .error(function(err){
-                   console.log('timeout',err);
-                });
-        }
-    };
-});
+            }
+        };
+    });

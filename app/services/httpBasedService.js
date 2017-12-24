@@ -5,11 +5,11 @@ angular.module('myApp.service', [])
         console.log('httpbasedservice here');
         return {
             getUsers: function (url) {
-                return $http.get(url, {timeout: 10000}).then(function (data) {
-                    console.log(data);
+                return $http.get(url, {timeout: 3000}).then(function (data) {
+                    console.log('alrighto');
                     return data;
                 }, function (err) {
-                    console.log(err);
+                    console.log('error time man');
                 })
             }
         };

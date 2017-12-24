@@ -9,7 +9,6 @@ var app = angular.module('myApp', [
     'myApp.service'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
-
     $routeProvider.otherwise({redirectTo: '/view1'});
 }]);
 
@@ -27,8 +26,9 @@ app.config(function ($httpProvider) {
                 //todo remove
                 debugger;
                 switch (rejection.status){
-                    case 408 :
+                    case -1 :
                         console.log('connection timed out');
+
                         break;
                 }
                 return $q.reject(rejection);

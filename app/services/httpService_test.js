@@ -10,7 +10,7 @@ beforeEach(inject(function (_$httpBackend_, _httpBasedService_) {
 }));
 
 
-it('should get something service http based fixing that ceiling ho', function () {
+it('should get something service http based', function () {
     // given
     var response = {data: 'result'};
     var result = {}

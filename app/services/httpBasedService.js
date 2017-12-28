@@ -10,10 +10,10 @@ angular.module('myApp.service', [])
             return $http.get(url)
                 .then(function(result) {
                     return result.data;
-                })
-                .error(function(err){
-                   console.log('timeout',err);
+                },function(err){
+                    console.log(err);
                 });
+
         }
     };
 });

@@ -9,9 +9,9 @@ angular.module('myApp.view1', ['ngRoute'])
         });
     }])
 
-    .controller('View1Ctrl', ['httpBasedService', function (httpBasedService) {
-        var url ='https://jsonplaceholder.typicode.com/posts';
-        httpBasedService.getUsers(url).then(function (data) {
-            console.log(data);
-        })
-    }]);
+
+.controller('View1Ctrl',function(){
+
+
+
+});

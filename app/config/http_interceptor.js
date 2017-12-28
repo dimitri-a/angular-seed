@@ -2,7 +2,6 @@
 'use strict';
 
 angular.module('myApp.httpInterceptor', [])
-
     .config(function ($httpProvider) {
         $httpProvider.interceptors.push(function ($rootScope, $q) {
             return {

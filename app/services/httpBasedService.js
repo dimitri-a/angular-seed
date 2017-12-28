@@ -8,10 +8,10 @@ angular.module('myApp.service', [])
                 return $http.get(url, {timeout: 10000}).then(function (data) {
                     //todo remove
                     debugger;
-                    console.log('alrighto');
+                    console.log('interceptor alrighto');
                     return data;
                 }, function (err) {
-                    console.log('error time man');
+                    console.log('interceptor:error time man');
                     return -1;
                 })
             }

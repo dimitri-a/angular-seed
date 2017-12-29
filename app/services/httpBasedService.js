@@ -2,7 +2,7 @@
 
 angular.module('myApp.service', [])
     .factory('httpBasedService', function ($http) {
-        console.log('httpbasedservice here');
+        console.log('httpbasedservice start');
         return {
             getUsers: function (url) {
                 return $http.get(url, {timeout: 10000}).then(function (data) {

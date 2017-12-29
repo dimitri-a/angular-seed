@@ -25,11 +25,10 @@ describe('myApp.view1 module', function () {
         }));
 
 
-        it('should run with service', inject(function ($controller) {
+        it('scope.user should have items', inject(function ($controller) {
             //spec body
             var view1Ctrl = $controller('View1Ctrl', {$scope: $scope});
-            expect(view1Ctrl).toBeDefined();
-            //expect($scope.greeting).toEqual('hello');
+           // expect($scope.users.length).toBeGreaterThan(0);
         }));
 
     });

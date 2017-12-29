@@ -6,12 +6,11 @@ angular.module('myApp.service', [])
         return {
             getUsers: function (url) {
                 return $http.get(url, {timeout: 10000}).then(function (data) {
-                    //todo remove
-                    debugger;
-                    console.log('interceptor alrighto');
+                    console.log('httpbasedservice success');
+
                     return data;
                 }, function (err) {
-                    console.log('interceptor:error time man');
+                    console.log('httpbasedservice error');
                     return -1;
                 })
             }

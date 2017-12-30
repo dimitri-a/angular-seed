@@ -16,12 +16,13 @@ angular.module('myApp.view1', ['ngRoute'])
         $scope.callSomething = function(){
             console.log('view1ctrl:scope.callsomething is starting');
             httpBasedService.getUsers('https://jsonplaceholder.typicode.com/users').then(function (result) {
+                console.log('successful httpbasedservice.getusers call inside view1ctrl');
                 $scope.users = result.data;
                 console.log('scope .users',$scope.users);
             });
 
         };
 
-        $scope.callSomething();
+       $scope.callSomething();
 
     });

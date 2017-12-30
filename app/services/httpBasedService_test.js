@@ -13,7 +13,7 @@ describe('hhtpbased service',function(){
     }));
 
 
-    it('shpeakdlowould get response 200 service http based', function () {
+    xit('shpeakdlowould get response 200 service http based', function () {
         // given
         var response = {data: 'result'};
         var result = {}
@@ -29,7 +29,7 @@ describe('hhtpbased service',function(){
         expect({data: 'result'}).toEqual(response);
     });
 
-    it('should get response 404 when service timesout', function () {
+    xit('should get response 404 when service timesout', function () {
 
         var response = {data: 'error'};
         var result = {};

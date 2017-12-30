@@ -2,25 +2,43 @@
 
 describe('myApp.view1 module', function () {
 
-    var localScope, $rootScope, httpBasedService, mockService;
+    var localScope, $rootScope, httpBasedService, httpBasedServiceMock;
 
     beforeEach(module('myApp.view1'));
     beforeEach(module('myApp.service'));
 
-    beforeEach(inject(function (_$rootScope_, _httpBasedService_) {
+    beforeEach(inject(function (_$rootScope_) {
         $rootScope = _$rootScope_;
         localScope = _$rootScope_.$new();
-        httpBasedService = _httpBasedService_;
+      //  httpBasedService = _httpBasedService_;
 
-        mockService = {
-            getUsers: function () {
-            }
-        };
+
 
 
     }));
 
+
+    beforeEach(function(){
+        httpBasedServiceMock = {
+            getUsers: function () {
+            }
+        };
+    });
+
     describe('view1 controller', function () {
+
+        it('should call httpBasedService through callSomething', inject(function ($controller) {
+
+            spyOn(httpBasedServiceMock, 'getUsers').and.callThrough();
+
+            var view1Ctrl = $controller('View1Ctrl', {$scope: localScope,httpBasedService:httpBasedServiceMock});
+
+            localScope.callSomething();
+
+            expect(httpBasedServiceMock.getUsers).toHaveBeenCalled();
+
+
+        }));
 
         xit('should be defined and stuff', inject(function () {
             //spec body
@@ -41,17 +59,7 @@ describe('myApp.view1 module', function () {
 
         }));
 
-        it('should call httpBasedService through callSomething', inject(function ($controller) {
 
-
-            spyOn(httpBasedService, 'getUsers').and.callThrough();
-
-            var view1Ctrl = $controller('View1Ctrl', {$scope: localScope});
-
-            expect(httpBasedService.getUsers).toHaveBeenCalled();
-
-
-        }));
 
 
     });

@@ -12,33 +12,44 @@ describe('myApp.view1 module', function () {
         localScope = _$rootScope_.$new();
         httpBasedService = _httpBasedService_;
 
-        // mockService = {
-        //     callService: function () {
-        //     }
-        // };
+        mockService = {
+            getUsers: function () {
+            }
+        };
 
 
     }));
 
     describe('view1 controller', function () {
 
-        it('should be defined and stuff', inject(function ($controller) {
+        xit('should be defined and stuff', inject(function () {
             //spec body
-            var view1Ctrl = $controller('View1Ctrl', {$scope: localScope});
+
             expect(view1Ctrl).toBeDefined();
             //expect($scope.greeting).toEqual('hello');
         }));
 
 
-        it('should call something', inject(function ($controller) {
+        xit('should call scope.something', inject(function () {
 
-            var view1Ctrl = $controller('View1Ctrl', {$scope: localScope});
 
-            spyOn(localScope,'callSomething').and.callThrough();
+            spyOn(localScope, 'callSomething').and.callThrough();
 
             localScope.callSomething();
 
             expect(localScope.callSomething).toHaveBeenCalled();
+
+        }));
+
+        it('should call httpBasedService through callSomething', inject(function ($controller) {
+
+
+            spyOn(httpBasedService, 'getUsers').and.callThrough();
+
+            var view1Ctrl = $controller('View1Ctrl', {$scope: localScope});
+
+            expect(httpBasedService.getUsers).toHaveBeenCalled();
+
 
         }));
 

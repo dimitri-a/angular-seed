@@ -11,19 +11,17 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
     .controller('View1Ctrl', function (httpBasedService,$scope) {
-
+        console.log('view1ctrll is starting');
 
         $scope.callSomething = function(){
-            // httpBasedService.getUsers('https://jsonplaceholder.typicode.com/users').then(function (result) {
-            //     $scope.users = result.data;
-            //     console.log('scope .users',$scope.users);
-            // });
+            console.log('view1ctrl:scope.callsomething is starting');
+            httpBasedService.getUsers('https://jsonplaceholder.typicode.com/users').then(function (result) {
+                $scope.users = result.data;
+                console.log('scope .users',$scope.users);
+            });
 
-            var test=1;
-            console.log('call something');
         };
 
         $scope.callSomething();
-
 
     });

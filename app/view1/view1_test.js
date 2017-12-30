@@ -12,10 +12,10 @@ describe('myApp.view1 module', function () {
         localScope = _$rootScope_.$new();
         httpBasedService = _httpBasedService_;
 
-        mockService = {
-            callService: function () {
-            }
-        };
+        // mockService = {
+        //     callService: function () {
+        //     }
+        // };
 
 
     }));
@@ -30,16 +30,15 @@ describe('myApp.view1 module', function () {
         }));
 
 
-        it('should call service', inject(function ($controller) {
+        it('should call something', inject(function ($controller) {
 
+            var view1Ctrl = $controller('View1Ctrl', {$scope: localScope});
 
-            spyOn(mockService, 'callService').and.callThrough();
+            spyOn(localScope,'callSomething').and.callThrough();
 
-            var view1Ctrl = $controller('View1Ctrl', {$scope: localScope,httpBasedService: mockService});
+            localScope.callSomething();
 
-            localScope.callService();
-
-            expect(mockService.callService).toHaveBeenCalled();
+            expect(localScope.callSomething).toHaveBeenCalled();
 
         }));
 

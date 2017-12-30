@@ -12,13 +12,18 @@ angular.module('myApp.view1', ['ngRoute'])
 
     .controller('View1Ctrl', function (httpBasedService,$scope) {
 
-        $scope.callService = function(){
-            httpBasedService.getUsers('https://jsonplaceholder.typicode.com/users').then(function (result) {
-                $scope.users = result.data;
-                console.log('scope .users',$scope.users);
-            });
+
+        $scope.callSomething = function(){
+            // httpBasedService.getUsers('https://jsonplaceholder.typicode.com/users').then(function (result) {
+            //     $scope.users = result.data;
+            //     console.log('scope .users',$scope.users);
+            // });
+
+            var test=1;
+            console.log('call something');
         };
 
-        $scope.callService();
+        $scope.callSomething();
+
 
     });

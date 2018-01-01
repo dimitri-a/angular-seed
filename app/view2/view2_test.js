@@ -5,6 +5,7 @@ describe('Testing a Controller that uses a Promise', function () {
 
     beforeEach(module('myApp'));
 
+    //DataService exists and mocking the returnvalue
     beforeEach(inject(function($controller, _$rootScope_, _$q_, DataService) {
         $q = _$q_;
         $scope = _$rootScope_.$new();

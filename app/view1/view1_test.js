@@ -12,12 +12,6 @@ describe('myApp.view1 module', function () {
         localScope = _$rootScope_.$new();
         httpBasedService = _httpBasedService_;
 
-        // mockService = {
-        //     callService: function () {
-        //     }
-        // };
-
-
     }));
 
     describe('view1 controller', function () {
@@ -32,11 +26,9 @@ describe('myApp.view1 module', function () {
 
         it('should call something', inject(function ($controller) {
 
-
-            //var view1Ctrl = $controller('View1Ctrl', {$scope: localScope});
+            var view1Ctrl = $controller('View1Ctrl', {$scope: localScope});
 
             spyOn(localScope,'callSomething').and.callThrough();
-
 
             localScope.callSomething();
 

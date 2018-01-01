@@ -2,28 +2,21 @@
 
 angular.module('myApp.view2', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view2', {
-    templateUrl: 'view2/view2.html',
-    controller: 'GreetController'
-  });
-}])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.when('/view2', {
+            templateUrl: 'view2/view2.html',
+            controller: 'GreetController'
+        });
+    }])
 
-.controller('GreetController', [
-    function(DataService) {
-        var self = this;
-        self.greeting = null;
-
-        self.init = function() {
-            DataService.getGreeting()
-                .then(function(result) {
-                        self.greeting = result;
+    .controller('GreetController',
+        function (doStuff,$scope) {
+            doStuff.update()
+                .then(function (result) {
+                        $scope.title = result.data[0].title;
                     },
-                    function(result) {
+                    function (result) {
                         console.error('Error: ' + result);
                     });
-        };
-    }
-
-
-]);
+        }
+    );

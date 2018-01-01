@@ -9,18 +9,31 @@ app
     }])
 
 
-    .controller('view2Ctrl', function ( $scope,DataService) {
-        console.log('view2ctrll is starting');
+// .controller('View2Ctrl', function ($scope) {
+//     console.log('view2ctrll is starting');
+//
+//     $scope.init = function () {
+//         DataService.getGreeting().then(function (result) {
+//             //todo remove
+//             debugger;
+//             $scope.val = result.property;
+//         });
+//     };
+//
+//     $scope.init();
+//
+//
+// });
 
-        $scope.callSomething = function(){
-           DataService.getGreeting().then(function (result) {
-               //todo remove
-               debugger;
-                $scope.val = result.property;
-            });
-        };
-
-        $scope.callSomething();
-
-
-    });
+.controller('View2Ctrl', function ($scope, DataService) {
+    // The search service returns a promise API
+    DataService.getGreeting($scope.query)
+        .then(function (data) {
+            // This is set when the promise is resolved.
+            $scope.results = data;
+        })
+        .catch(function () {
+            // This is set in the event of an error.
+            $scope.error = 'There has been an error!';
+        });
+});

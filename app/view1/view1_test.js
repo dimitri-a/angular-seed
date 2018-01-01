@@ -6,10 +6,10 @@ describe('myApp.view1 module', function () {
 
     beforeEach(module('myApp'));
 
-    beforeEach(inject(function (_$rootScope_, _httpBasedService_) {
+    beforeEach(inject(function (_$rootScope_) {
         $rootScope = _$rootScope_;
         localScope = _$rootScope_.$new();
-        httpBasedService = _httpBasedService_;
+        //httpBasedService = _httpBasedService_;
 
     }));
 

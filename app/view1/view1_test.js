@@ -4,8 +4,7 @@ describe('myApp.view1 module', function () {
 
     var localScope, $rootScope, httpBasedService, mockService;
 
-    beforeEach(module('myApp.view1'));
-    beforeEach(module('myApp.service'));
+    beforeEach(module('myApp'));
 
     beforeEach(inject(function (_$rootScope_, _httpBasedService_) {
         $rootScope = _$rootScope_;

@@ -4,7 +4,7 @@ var $httpBackend, httpBasedService,$timeout;
 
 describe('httpbased service',function(){
 
-    beforeEach(module('myApp.service'));
+    beforeEach(module('myApp'));
 
     beforeEach(inject(function (_$httpBackend_, _httpBasedService_,_$timeout_) {
         $httpBackend = _$httpBackend_;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.service', [])
+app
     .factory('httpBasedService', function ($http) {
         console.log('httpbasedservice start');
         return {

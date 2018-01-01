@@ -9,19 +9,20 @@ app
     }])
 
 
-    .controller('view2Ctrl', function (httpBasedService,$scope) {
+    .controller('view2Ctrl', function (DataService, $scope) {
         console.log('view2ctrll is starting');
 
-        $scope.callSomething = function(){
-            console.log('view2ctrl:scope.callsomething is starting');
-            httpBasedService.getUsers('https://jsonplaceholder.typicode.com/users').then(function (result) {
-                console.log('successful httpbasedservice.getusers call inside view2ctrl');
-                $scope.users = result.data;
-                console.log('scope .users',$scope.users);
-            });
+        $scope.init = function () {
+            DataService.getGreeting()
+                .then(function (result) {
 
-        };
+                        $scope.greeting = result;
+                        console.log('$scope.greeting =',$scope.greeting);
+                    },
+                    function (result) {
+                        console.error('Error: ' + result);
+                    });
+        }
 
-        $scope.callSomething();
 
     });

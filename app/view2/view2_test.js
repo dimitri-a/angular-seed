@@ -2,11 +2,16 @@
 
 describe('myApp.view2 module', function () {
 
-    var localScope,$rootScope;
+    var localScope, $rootScope, deferred, mockService;
 
     beforeEach(module('myApp'));
 
-    beforeEach(inject(function (_$rootScope_, _httpBasedService_) {
+    beforeEach(module(function ($provide) {
+        mockService = jasmine.createSpyObj('DataService', ['getGreeting']);
+        $provide.value('DataService', mockService);
+    }));
+
+    beforeEach(inject(function (_$rootScope_) {
         $rootScope = _$rootScope_;
         localScope = _$rootScope_.$new();
     }));
@@ -14,13 +19,14 @@ describe('myApp.view2 module', function () {
     describe('view2 controller', function () {
 
         it('should be defined and stuff', inject(function ($controller) {
-            //spec body
             var view1Ctrl = $controller('view2Ctrl', {$scope: localScope});
             expect(view1Ctrl).toBeDefined();
         }));
 
 
-        xit('greeting should change after promise resolved', inject(function ($q, $rootScope) {
+        it('greeting should change after promise resolved', inject(function ($q, $rootScope, $controller) {
+            var ctrl = $controller('view2Ctrl', {$scope: localScope});
+
             //create promise
             deferred = $q.defer();
 
@@ -28,20 +34,18 @@ describe('myApp.view2 module', function () {
             mockService.getGreeting.and.returnValue(deferred.promise);
 
             //call init()
-            ctrl.init();
-
-            expect(ctrl.greeting).toBeNull();
+            localScope.init();
 
             deferred.resolve('Hello World');
 
             //not yet...
-            expect(ctrl.greeting).toBeNull();
+            expect(localScope.greeting).toBe(undefined)
 
             //"it's important to know that the resolution of promises is tied to the digest cycle"
             $rootScope.$apply();
 
             //now!
-            expect(ctrl.greeting).toBe('Hello World');
+            expect(localScope.greeting).toBe('Hello World');
 
         }));
 

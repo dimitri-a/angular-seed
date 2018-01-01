@@ -16,7 +16,7 @@ describe('Testing a Controller that uses a Promise', function () {
         spyOn(DataService, 'getGreeting').and.returnValue(deferred.promise);
 
         // Init the controller, passing our spy service instance
-        $controller('View2Ctrl', {
+        $controller('view2Ctrl', {
             $scope: $scope,
             DataService: DataService
         });
@@ -34,7 +34,7 @@ describe('Testing a Controller that uses a Promise', function () {
         expect($scope.error).toBe(undefined);
     });
 
-    xit('should reject promise', function () {
+    it('should reject promise', function () {
         // This will call the .catch function in the controller
         deferred.reject();
 

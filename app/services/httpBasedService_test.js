@@ -2,7 +2,7 @@
 
 var $httpBackend, httpBasedService,$timeout;
 
-describe('hhtpbased service',function(){
+describe('httpbased service',function(){
 
     beforeEach(module('myApp.service'));
 
@@ -13,7 +13,7 @@ describe('hhtpbased service',function(){
     }));
 
 
-    xit('shpeakdlowould get response 200 service http based', function () {
+    it('should get response 200 service http based', function () {
         // given
         var response = {data: 'result'};
         var result = {}
@@ -29,7 +29,7 @@ describe('hhtpbased service',function(){
         expect({data: 'result'}).toEqual(response);
     });
 
-    xit('should get response 404 when service timesout', function () {
+    it('should get response 404 when service timesout', function () {
 
         var response = {data: 'error'};
         var result = {};
@@ -49,8 +49,8 @@ describe('hhtpbased service',function(){
     });
 
     afterEach(function () {
-        //$httpBackend.verifyNoOutstandingExpectation();
-        //$httpBackend.verifyNoOutstandingRequest();
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
     });
 });
 

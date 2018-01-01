@@ -2,58 +2,47 @@
 
 describe('myApp.view1 module', function () {
 
-    var localScope, $rootScope, httpBasedService, httpBasedServiceMock;
+    var localScope, $rootScope, httpBasedService, mockService;
 
     beforeEach(module('myApp.view1'));
     beforeEach(module('myApp.service'));
 
-    beforeEach(inject(function (_$rootScope_) {
+    beforeEach(inject(function (_$rootScope_, _httpBasedService_) {
         $rootScope = _$rootScope_;
         localScope = _$rootScope_.$new();
+        httpBasedService = _httpBasedService_;
+
+        // mockService = {
+        //     callService: function () {
+        //     }
+        // };
+
+
     }));
-
-
-    beforeEach(function(){
-        httpBasedServiceMock = {
-            getUsers: function () {
-            }
-        };
-    });
 
     describe('view1 controller', function () {
 
-        xit('should call httpBasedService through callSomething', inject(function ($controller) {
-
-            spyOn(httpBasedServiceMock, 'getUsers').and.callThrough();
-
-            var view1Ctrl = $controller('View1Ctrl', {$scope: localScope,httpBasedService:httpBasedServiceMock});
-
-            localScope.callSomething();
-
-            expect(httpBasedServiceMock.getUsers).toHaveBeenCalled();
-
-
-        }));
-
         it('should be defined and stuff', inject(function ($controller) {
-            var ctrl = $controller('View1Ctrl',{$scope:localScope});
-            expect(ctrl).toBeDefined();
+            //spec body
+            var view1Ctrl = $controller('View1Ctrl', {$scope: localScope});
+            expect(view1Ctrl).toBeDefined();
+            //expect($scope.greeting).toEqual('hello');
         }));
 
 
-        it('should call scope.something', inject(function () {
+        it('should call something', inject(function ($controller) {
 
-            spyOn(localScope, 'callSomething').and.callThrough();
 
-            var ctrl = $controller('View1Ctrl',{$scope:localScope});
+            //var view1Ctrl = $controller('View1Ctrl', {$scope: localScope});
+
+            spyOn(localScope,'callSomething').and.callThrough();
+
 
             localScope.callSomething();
 
             expect(localScope.callSomething).toHaveBeenCalled();
 
         }));
-
-
 
 
     });

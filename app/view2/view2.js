@@ -5,10 +5,25 @@ angular.module('myApp.view2', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view2', {
     templateUrl: 'view2/view2.html',
-    controller: 'View2Ctrl'
+    controller: 'GreetController'
   });
 }])
 
-.controller('View2Ctrl', [function() {
+.controller('GreetController', [
+    function(DataService) {
+        var self = this;
+        self.greeting = null;
 
-}]);
+        self.init = function() {
+            DataService.getGreeting()
+                .then(function(result) {
+                        self.greeting = result;
+                    },
+                    function(result) {
+                        console.error('Error: ' + result);
+                    });
+        };
+    }
+
+
+]);

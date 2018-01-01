@@ -10,11 +10,6 @@ describe('myApp.view1 module', function () {
     beforeEach(inject(function (_$rootScope_) {
         $rootScope = _$rootScope_;
         localScope = _$rootScope_.$new();
-      //  httpBasedService = _httpBasedService_;
-
-
-
-
     }));
 
 
@@ -27,7 +22,7 @@ describe('myApp.view1 module', function () {
 
     describe('view1 controller', function () {
 
-        it('should call httpBasedService through callSomething', inject(function ($controller) {
+        xit('should call httpBasedService through callSomething', inject(function ($controller) {
 
             spyOn(httpBasedServiceMock, 'getUsers').and.callThrough();
 
@@ -40,18 +35,17 @@ describe('myApp.view1 module', function () {
 
         }));
 
-        xit('should be defined and stuff', inject(function () {
-            //spec body
-
-            expect(view1Ctrl).toBeDefined();
-            //expect($scope.greeting).toEqual('hello');
+        it('should be defined and stuff', inject(function ($controller) {
+            var ctrl = $controller('View1Ctrl',{$scope:localScope});
+            expect(ctrl).toBeDefined();
         }));
 
 
-        xit('should call scope.something', inject(function () {
-
+        it('should call scope.something', inject(function () {
 
             spyOn(localScope, 'callSomething').and.callThrough();
+
+            var ctrl = $controller('View1Ctrl',{$scope:localScope});
 
             localScope.callSomething();
 

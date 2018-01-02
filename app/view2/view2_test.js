@@ -23,7 +23,7 @@ describe('Testing a Controller that uses a Promise', function () {
         });
     }));
 
-    it('should resolve promise', function () {
+    xit('should resolve promise', function () {
         // Setup the data we wish to return for the .then function in the controller
         deferred.resolve([{ id: 1 }, { id: 2 }]);
 
@@ -35,7 +35,7 @@ describe('Testing a Controller that uses a Promise', function () {
         expect($scope.error).toBe(undefined);
     });
 
-    it('should reject promise', function () {
+    xit('should reject promise', function () {
         // This will call the .catch function in the controller
         deferred.reject();
 

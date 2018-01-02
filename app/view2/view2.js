@@ -26,15 +26,19 @@ app
 // });
 
 .controller('view2Ctrl', function ($scope, DataService) {
-    // The search service returns a promise API
-    DataService.getGreeting($scope.query)
-        .then(function (data) {
-            // This is set when the promise is resolved.
-            $scope.results = data;
-            console.log(data);
-        })
-        .catch(function () {
-            // This is set in the event of an error.
-            $scope.error = 'There has been an error!';
-        });
+
+    $scope.init = function(){
+        // The search service returns a promise API
+        DataService.getGreeting()
+            .then(function (data) {
+                // This is set when the promise is resolved.
+                $scope.results = data;
+                console.log(data);
+            })
+            .catch(function () {
+                // This is set in the event of an error.
+                $scope.error = 'There has been an error!';
+            });
+    };
+
 });

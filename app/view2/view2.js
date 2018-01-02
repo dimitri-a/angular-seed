@@ -29,16 +29,19 @@ app
 
     $scope.init = function(){
         // The search service returns a promise API
-        DataService.getGreeting()
-            .then(function (data) {
+        DataService.getGreeting('https://jsonplaceholder.typicode.com/todos')
+            .then(function (res) {
                 // This is set when the promise is resolved.
-                $scope.results = data;
-                console.log(data);
+
+                $scope.length =res;
+                console.log('view2ctrl, resolve Dataservice.getGreeting()=',res);
             })
             .catch(function () {
                 // This is set in the event of an error.
                 $scope.error = 'There has been an error!';
             });
     };
+
+    $scope.init();
 
 });

@@ -13,45 +13,37 @@ describe('Testing a Controller that uses a Mocked out service', function () {
         $provide.value('DataService', mockService);
     }));
 
-    beforeEach(inject(function ($controller,$rootScope) {
-        localScope = $rootScope.$new();
-        ctrl = $controller('view2Ctrl',{$scope:localScope});
 
-    }));
-
-    it('should resolve promise', inject(function ($q, $rootScope) {
+    //trying to test whether the dataservice.getGreeting is called
+    it('should resolve promise and mock the DataService', inject(function ($q,$controller,$rootScope) {
         //create promise
         deferred = $q.defer();
 
         //mock service response (foc controller's constructor)
         mockService.getGreeting.and.returnValue(deferred.promise);
-        
+
+        localScope = $rootScope.$new();
+        ctrl = $controller('view2Ctrl', {$scope:localScope ,DataService: mockService});
+
         localScope.init();
 
-        expect(localScope.results).toEqual(undefined);
+        deferred.resolve(1);
 
-        deferred.resolve('Hello World');
-
-        //not yet...
-        expect(localScope.results).toEqual(undefined)
-
-        //"it's important to know that the resolution of promises is tied to the digest cycle"
         $rootScope.$apply();
 
-        //now!
-        expect(localScope.results).toBe('Hello World');
+        expect(localScope.length).toBe(1);
     }));
 
-    xit('should reject promise', function () {
+    xit('should reject promise', inject(function ($rootScope) {
         // This will call the .catch function in the controller
         deferred.reject();
 
         // We have to call apply for this to work
-        localScope.$apply();
+        $rootScope.$apply();
 
         // Since we called apply, not we can perform our assertions
         expect(localScope.results).toBe(undefined);
         expect(localScope.error).toBe('There has been an error!');
-    });
+    }));
 
 });

@@ -6,13 +6,13 @@
 //         var deferred = $q.defer();
 //
 //         $http.get('https://jsonplaceholder.typicode.com/todos')
-//             .success(function(data) {
+//             function(data) {
 //                 // The promise is resolved once the HTTP call is successful.
 //                 deferred.resolve(data[0].title);
-//             })
-//             .error(function() {
+//             }
+//             ,function() {
 //                 // The promise is rejected if there is an error with the HTTP call.
-//                 deferred.reject();
+//                 deferred.reject('error');
 //             });
 //
 //         // The promise is returned to the caller
@@ -21,3 +21,22 @@
 //
 //     return service;
 // });
+
+
+'use strict';
+
+app
+    .factory('DataService', function ($http) {
+        console.log('dataservice start');
+        return {
+            getGreeting: function (url) {
+                return $http.get(url).then(function (data) {
+                    console.log('dataservice success');
+                    return data;
+                }, function (err) {
+                    console.log('dataservice error');
+                    return -1;
+                })
+            }
+        };
+    });

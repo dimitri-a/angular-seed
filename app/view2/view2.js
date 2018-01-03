@@ -36,9 +36,11 @@ app
                 $scope.length =res;
                 console.log('view2ctrl, resolve Dataservice.getGreeting()=',res);
             })
-            .catch(function () {
+            .catch(function (err) {
                 // This is set in the event of an error.
+
                 $scope.error = 'There has been an error!';
+                console.log($scope.error);
             });
     };
 

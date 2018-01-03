@@ -9,22 +9,6 @@ app
     }])
 
 
-// .controller('View2Ctrl', function ($scope) {
-//     console.log('view2ctrll is starting');
-//
-//     $scope.init = function () {
-//         DataService.getGreeting().then(function (result) {
-//             //todo remove
-//             debugger;
-//             $scope.val = result.property;
-//         });
-//     };
-//
-//     $scope.init();
-//
-//
-// });
-
 .controller('view2Ctrl', function ($scope, DataService) {
 
     $scope.init = function(){

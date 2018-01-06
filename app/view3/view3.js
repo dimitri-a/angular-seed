@@ -10,18 +10,55 @@ app
 
 
     //controller that generates promises and displays status
-    .controller('view3Ctrl', function ($q) {
+    .controller('view3Ctrl', function ($timeout, $q, $scope) {
+        var promises = [];
 
 
+        //create a promise with name and succeed property
+        function createPromise(name, succeed, counter) {
 
+            var deferred = $q.defer();
+            $timeout(
+                function () {
+                    if (succeed) {
+                        $scope[name] = 'resolved';
+                        deferred.resolve('ok');
+                    }
+                    else {
+                        $scope[name] = 'rejected';
+                        deferred.reject('not ok');
+                    }
+                }, counter * 1000);
 
-
-
-    })
-    .factory('generator',function(){
-        return {
-            giveProm:function(){
-                return $q.defer();
-            }
+            return deferred.promise;
         }
+
+
+        //create promises collection
+        for (var i = 1; i++; i = 5) {
+            var succeed = i % 2 === 0;
+
+        }
+
+
+        //wait for the promises to be resolved
+        $q.all(promises).then(function () {
+
+
+        });
+
+
     });
+
+
+// //return promise that has random delay
+// .factory('generator', function ($q, $timeout) {
+//     var pr = $q.defer();
+//     return {
+//         giveProm: function (name) {
+//             return $timeout(function () {
+//                 pr.resolve(name);
+//             }, Math.random * 1000);
+//         }
+//     }
+// });

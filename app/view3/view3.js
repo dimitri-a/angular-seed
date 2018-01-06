@@ -13,9 +13,10 @@ app
     .controller('view3Ctrl', function ($timeout, $q, $scope) {
         var promises = [];
 
-
         //create a promise with name and succeed property
         function createPromise(name, succeed, counter) {
+
+            $scope[name]='running';
 
             var deferred = $q.defer();
             $timeout(
@@ -35,17 +36,15 @@ app
 
 
         //create promises collection
-        for (var i = 1; i++; i = 5) {
+        for (var i = 1; i <= 5;+i++) {
             var succeed = i % 2 === 0;
-
+            console.log(succeed);
+            promises.push(createPromise('promise'+i,succeed,i));
         }
 
-
-        //wait for the promises to be resolved
-        $q.all(promises).then(function () {
-
-
-        });
+        console.log('q.all');
+        //request all promises to be resolved
+        $q.all(promises);
 
 
     });

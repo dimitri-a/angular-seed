@@ -16,7 +16,7 @@ app
         //create a promise with name and succeed property
         function createPromise(name, succeed, counter) {
 
-            $scope[name]='running';
+            $scope[name] = 'running';
 
             var deferred = $q.defer();
             $timeout(
@@ -34,18 +34,26 @@ app
             return deferred.promise;
         }
 
-
         //create promises collection
-        for (var i = 1; i <= 5;+i++) {
+        for (var i = 1; i <= 5; +i++) {
             var succeed = i % 2 === 0;
             console.log(succeed);
-            promises.push(createPromise('promise'+i,succeed,i));
+            promises.push(createPromise('promise' + i, succeed, i));
         }
 
         console.log('q.all');
-        //request all promises to be resolved
-        $q.all(promises);
 
+        $scope.status1 = 'waiting';
+        $scope.status2 = 'waiting';
+        //request all promises to be resolved
+        $q.all(promises).then(function () {
+                $scope.status1 = 'cool';
+            },
+            function () {
+                $scope.status1 = 'shit';
+            }).finally(function () {
+            $scope.status2 = 'all finished'
+        })
 
     });
 

@@ -8,32 +8,37 @@ app
         });
     }])
 
-    .controller('view3Ctrl', function ($q, $timeout) {
-        //create promise
-        var one = $q.defer();
+    .controller('view3Ctrl', function ($q, $timeout, myService) {
 
-        one.promise.then(function(result){
-            console.log(result);
+
+        var one = $q.defer();
+        var two = $q.defer();
+        var three = $q.defer();
+
+
+        var all = $q.all([one.promise, two.promise, three.promise]);
+
+        all.then(function (res) {
+            console.log('hier');
+            console.log(res);
         });
 
-        $timeout(function(){
-            one.resolve('hi there');
-        },10);
+
+        one.resolve('one is resolved');
+        two.resolve('two is resolved');
+        three.resolve('three is resolved');
+
 
     })
     .factory('myService', function ($timeout) {
         return {
-            go: function ( $q) {
-                $timeout(function () {
-                    $q.resolve('hello');
+            go: function () {
+                return $timeout(function () {
+                    return 'hello from service';
                 }, 1000);
             }
         }
     });
-
-
-
-
 
 
 // 'use strict';

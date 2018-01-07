@@ -36,23 +36,29 @@ app
 
         //create promises collection
         for (var i = 1; i <= 5; +i++) {
-            var succeed = i % 2 === 0;
-            console.log(succeed);
+            var succeed = i!==1;
+            //console.log(succeed);
+
             promises.push(createPromise('promise' + i, succeed, i));
         }
 
-        console.log('q.all');
+        console.log('before q.all is called');
 
         $scope.status1 = 'waiting';
         $scope.status2 = 'waiting';
         //request all promises to be resolved
-        $q.all(promises).then(function () {
+        //goes to error state once 1 of the promises go to reject state
+        $q.all(promises).then(function (res) {
+            console.log('in then for $q.all success state....');
+            //todo remove
+            debugger;
                 $scope.status1 = 'cool';
             },
-            function () {
-                $scope.status1 = 'shit';
+            function (res) {
+            console.log('inside $q.all error state err=',res);
+                $scope.status1 = 'at least one of the promises got rejected';
             }).finally(function () {
-            $scope.status2 = 'all finished'
+            $scope.status2 = 'Fix 1 of the promises or end for all successfully, depends on status1';
         })
 
     });

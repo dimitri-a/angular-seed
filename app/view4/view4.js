@@ -1,6 +1,6 @@
 'use strict';
 
-console.log('hello this is view4.js');
+console.log('hello this just the file loading view4.js');
 app
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/view4', {

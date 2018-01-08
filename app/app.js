@@ -21,7 +21,6 @@ var app = angular.module('myApp', [
                 ]
             });
 
-            //$ocLazyLoad.load(['view4/view4.js'],function(ok){console.log(ok);},function(err){console.log(err);});
         };
     });
 

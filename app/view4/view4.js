@@ -13,7 +13,7 @@ app
 
         $scope.enableBootstrap=function(){
             console.log('enablebootstrap');
-            $ocLazyLoad.load(['app/bower_components/bootstrap/dist/css/bootstrap.css']);
+            $ocLazyLoad.load(['bower_components/bootstrap/dist/css/bootstrap.css']);
         };
     });
 

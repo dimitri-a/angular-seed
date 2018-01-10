@@ -8,9 +8,11 @@ app
             controller: 'view4Ctrl'
         });
     }])
-    .controller('view4Ctrl',function(){
+    .controller('view4Ctrl', function ($scope) {
         console.log('This is lazy loaded!!!');
-x   
+
+        $scope.hello='Good day , I am loaded now.';
+
     });
 
 
